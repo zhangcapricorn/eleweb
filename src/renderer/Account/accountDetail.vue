@@ -1,24 +1,30 @@
 <template>
-<div>
-         <div class="content-wrapper content">
-         <el-card class="box-card" v-loading.body="loading" element-loading-text="任务发布中">
-           <div slot="header" class="clearfix">
-             <span style="line-height: 24px;font-weight:blod;">发布订单任务</span>
-             <el-button style="float: right;" size="small" type="primary" @click="saveTask">发布</el-button>
-           </div>
+  <div>
+    <div class="content-wrapper content">
+      <el-card class="box-card" v-loading.body="loading" element-loading-text="任务发布中">
+        <div slot="header" class="clearfix">
+          <span style="line-height: 24px;font-weight:blod;">发布订单任务</span>
+          <el-button style="float: right;" size="small" type="primary" @click="saveTask">发布</el-button>
+        </div>
 
-           <div class="detail-block"><el-input  placeholder="请输入任务名称" v-model="task_name"></el-input></div>
-            <div class="detail-block">
-                <div class="detail-infos control-group">
-                    <el-row>
-                      <el-col :span="12">
-                      <span class="detail-label is-required">订单数量:</span><el-input-number v-model="task_order_num" size="small" style="width:200px"></el-input-number>
-                      </el-col>
-                      <el-col :span="12">
-                      <span class="detail-label is-required">购买数量:</span><el-input-number v-model="task_buy_num" size="small" style="width:200px"></el-input-number>
-                      </el-col>
-                    </el-row>
-                </div>
+        <div class="detail-block">
+          <span class="detail-label is-required">任务名称:</span>
+          <el-input  placeholder="请输入带有任务特点的名称，字数请少于15个" v-model="task_name">
+          </el-input>
+        </div>
+        <div class="detail-block">
+          <div class="detail-infos control-group">
+            <el-row>
+              <el-col :span="12">
+                <span class="detail-label is-required">订单数量:</span>
+                <el-input-number v-model="task_order_num" size="small" style="width:200px"></el-input-number>
+              </el-col>
+              <el-col :span="12">
+                <span class="detail-label is-required">购买数量:</span>
+                <el-input-number v-model="task_buy_num" size="small" style="width:200px"></el-input-number>
+              </el-col>
+            </el-row>
+          </div>
 
                 <div class="detail-infos control-group">
                  <el-row>

@@ -23,7 +23,11 @@ export default{
 
     init:function(){ 
         return{
-            studentData:accounts
+            studentData:accounts,
+            input1 : "",
+            input2 : "",
+            input3 : "",
+            value6 : ""
         }
     }
 }
