@@ -1,0 +1,52 @@
+{
+  "name": "elejd",
+  "version": "1.0.0",
+  "regType": "reg",
+  "verifyFilter": "https://plogin.m.jd.com/cgi-bin/m/authcode?mod=reg*",
+  "downVerifyName": "authcode.png",
+  "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+  "docheckphone": "https://plogin.m.jd.com/cgi-bin/m/docheckphone",
+  "dosendmsgcode": "https://plogin.m.jd.com/cgi-bin/m/dosendmsgcode",
+  "domreg": "https://plogin.m.jd.com/cgi-bin/m/domreg",
+  "regUrl": "https://plogin.m.jd.com/cgi-bin/m/mreg?appid=100&kpkey=&returnurl=https%3A%2F%2Fm.jd.com",
+  "smsPlantform": "xingjk",
+  "timeOut": 8000,
+  "thewolf": {
+    "username": "ralapu",
+    "password": "535423160",
+    "point": "",
+    "t": "8",
+    "cUser": "lgk001",
+    "pid": "1924",
+    "gsid": "001",
+    "ascription": "1",
+    "type": "移动",
+    "provice": "北京",
+    "city": "北京",
+    "msgtype": 3,
+    "jmp": "2"
+  },
+  "yumi": {
+    "username": "ele12345",
+    "password": "ele12345",
+    "point": 0,
+    "apiid": "56245-hfe",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjU2MjQ1LCJmaTEiOjIwLCJmaTIiOjAsImFwaWlkIjoiNTYyNDUtaGZlIiwiZXhwIjoxNTAyNTI3NTkxMDMwLCJ1bmFtZSI6ImVsZTEyMzQ1IiwicGFzcyI6ImM1MzUwMThlZTk0NjlkNjMyYWI2Y2FhMGFmNWI4OGJiN2FlZGU4MTJmNjc1ODlhZiIsImhkaW5mbyI6IiJ9.7qImonOe9C-Qx79jrsNYZgHVJhVx3Z4llYuwDLbtDIU",
+    "pid": "1234"
+  },
+  "xingjk": {
+    "token": "fc966b6d-e7d1-4c67-a5f9-e84d66a93016",
+    "name": "api-ssbgtjt9",
+    "password": "535423160",
+    "pid": "1016",
+    "user": "1016-OButXvVw"
+  },
+  "jsdati": {
+    "username": "ralap046",
+    "password": "535423160",
+    "point": 0,
+    "timeout": 3000
+  },
+  "regTimeStep": 6000,
+  "regFileDir": "C:\\Users\\Administrator\\Desktop"
+}
