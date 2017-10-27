@@ -13,7 +13,7 @@
         <el-submenu index="2">
             <template slot="title">账号管理</template>
             <el-menu-item index="2-1" @click="gotoLink('/account/List')">账号列表</el-menu-item>
-            
+            <el-menu-item index="2-1" @click="gotoLink('/account/Detail')">账号详情</el-menu-item>
         </el-submenu>
 </el-menu>
 </div>

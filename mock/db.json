@@ -1,0 +1,9 @@
+{
+  "account": [
+    { "studentNo": 1, "studentName": "json-server", "author": "typicode" }
+  ],
+  "comments": [
+    { "id": 1, "body": "some comment", "postId": 1 }
+  ],
+  "profile": { "name": "typicode" }
+}

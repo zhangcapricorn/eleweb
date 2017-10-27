@@ -33,12 +33,12 @@ export default new Router({
     {
         path:'/account/List',
         name:'accountList',
-        component: require('@/Account/listPage')
+        component: require('@/Account/accountList')
     },
     {
         path:'/account/Detail',
         name:'accountDetail',
-        component: require('@/Account/listPage')
+        component: require('@/Account/accountDetail')
     },
     {
       path: '*',

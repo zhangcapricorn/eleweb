@@ -131,7 +131,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 let that
 export default {
-  name: 'accountDetail',
+  name: 'index',
   data () {
     return {
       task_name:"",

@@ -14,7 +14,9 @@
     "pack": "npm run pack:main && npm run pack:renderer",
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
-    "postinstall": ""
+    "postinstall": "",
+    "mock": "json-server --watch mock/db.json",
+    "mockdev": "npm run mock & npm run dev"
   },
   "build": {
     "productName": "elejd",
@@ -68,7 +70,7 @@
     "xlsx": "^0.11.0",
     "xml2js": "^0.4.17",
     "ws":"^3.2.0",
-    "mock":"^0.1.1"
+    "mockjs":"1.0.1-beta3"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
