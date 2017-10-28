@@ -4,23 +4,23 @@ import { BaseURL, axios } from '../../api/config';
 // let apidata = axios.get(`${BaseURL}/account`).then( function (response) {
 //     console.log(response);
 //     return response.data;
-//   })
-// console.log(apidata);
-var account = JSON.stringify(getAccounts());
-console.log(account);
-console.log(this.$http);
-
-var orders = getUsers() {
-        let para = {
-          page: 0,
-          task: ""
-        };
-        getAccounts(para).then((res) => {
-        console.log("ttt");
-          this.orders = res.data.orders;
-          console.log(this.orders);
-        });
-      },
+// //   })
+// // console.log(apidata);
+// var account = JSON.stringify(getAccounts());
+// console.log(account);
+// console.log(this.$http);
+let ordersdd = [];
+function getOrders() {
+    let para = {
+      page: 1,
+    };
+    getAccounts(para).then((res) => {
+    console.log("ttt");
+      this.ordersdd = res.data.orders;
+      console.log(this.ordersdd);
+    });
+ };
+ 
 export default{
 
     init:function(){ 

@@ -1,6 +1,14 @@
 import {getAccounts} from '../../api/account'
 export default{
-        getTableData(){                           //---------------------获取列表数据
-            this.$http.get('http://localhost:54903/api/values').then(m=>console.log(m.data));
-        }
+    getOrders() {
+	    let para = {
+	      page: 0,
+	      task: ""
+	    };
+	    getAccounts(para).then((res) => {
+	    console.log("ttt");
+	      this.orders = res.data.orders;
+	      console.log(this.orders);
+	    });
+	 },
 }

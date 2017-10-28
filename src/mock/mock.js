@@ -8,6 +8,7 @@ export default {
     let mock = new MockAdapter(axios);
 	mock.onGet("/account/List").reply(config => {
       let {page, task} = config.params;
+      console.log(page);
       let mockOrders = _Order.filter(order => {
         if (task && order.task.indexOf(task) == -1) return false;
         return true;
