@@ -1,4 +1,4 @@
 import axios from 'axios'
 
-let BaseURL = "http://localhost:3000";
+let BaseURL = "";
 export { BaseURL, axios }

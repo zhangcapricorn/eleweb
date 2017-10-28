@@ -1,16 +1,6 @@
 import {getAccounts} from '../../api/account'
 export default{
         getTableData(){                           //---------------------获取列表数据
-            let para = {
-                pageNum: this.pagination.current,
-                pageSize: this.pagination.pageSize,
-                ...this.filter
-            };
-            console.log(para);
-            getStudentList(para).then((res) => {
-                console.log(res);
-                this.studentData = res.data.records;
-                this.pagination.total = res.data.total;
-            });
+            this.$http.get('http://localhost:54903/api/values').then(m=>console.log(m.data));
         }
 }

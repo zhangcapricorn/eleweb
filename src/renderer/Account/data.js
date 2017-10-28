@@ -1,5 +1,6 @@
 import { getAccounts } from '../../api/account'
 import { BaseURL, axios } from '../../api/config';
+
 // let apidata = axios.get(`${BaseURL}/account`).then( function (response) {
 //     console.log(response);
 //     return response.data;
@@ -7,27 +8,29 @@ import { BaseURL, axios } from '../../api/config';
 // console.log(apidata);
 var account = JSON.stringify(getAccounts());
 console.log(account);
-console.log(getAccounts());
+console.log(this.$http);
 
-var accounts = [
-               {
-                studentNo:'2111847',
-                studentName:'小明',
-               },
-               {
-                studentNo:'2111847',
-                studentName:'小明',
-               }
-            ]
+var orders = getUsers() {
+        let para = {
+          page: 0,
+          task: ""
+        };
+        getAccounts(para).then((res) => {
+        console.log("ttt");
+          this.orders = res.data.orders;
+          console.log(this.orders);
+        });
+      },
 export default{
 
     init:function(){ 
-        return{
-            studentData:accounts,
-            input1 : "",
-            input2 : "",
-            input3 : "",
-            value6 : ""
+        return {
+            orders : orders,
+            counter: 0,
+            page : 1,
+            filters: {
+              task: ''
+            },
         }
     }
 }
