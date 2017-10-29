@@ -36,12 +36,12 @@ export default new Router({
         component: require('@/Task/list')
     },
     {
-        path:'/tasks/Detail',
+        path:'/tasks/Detail/:id',
         name:'taskDetail',
         component: require('@/Task/detail')
     },
     {
-        path:'/tasks/todoList',
+        path:'/tasks/todoList/:id',
         name:'taskTodoList',
         component: require('@/Task/todoList')
     },

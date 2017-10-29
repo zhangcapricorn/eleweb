@@ -13,7 +13,7 @@
         <el-submenu index="2">
             <template slot="title">任务管理</template>
             <el-menu-item index="2-1" @click="gotoLink('/tasks/List')">任务列表</el-menu-item>
-            <el-menu-item index="2-1" @click="gotoLink('/tasks/Detail')">任务详情</el-menu-item>
+            <el-menu-item index="2-1" @click="gotoLink('/tasks/Detail/0')">任务详情</el-menu-item>
         </el-submenu>
 </el-menu>
 </div>

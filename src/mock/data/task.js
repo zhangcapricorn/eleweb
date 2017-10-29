@@ -1,13 +1,14 @@
 import Mock from "mockjs"
 
-const Orders = []
+const Tasks = []
 for(let i = 0; i < 10; i++){
-	Orders.push(Mock.mock({
+	Tasks.push(Mock.mock({
 		"id":Mock.Random.integer(100,500),
-		"task":Mock.Random.integer(100,500),
+		"task_name":Mock.Random.string('lower', 5),
 		"date":Mock.Random.date(),
 		"num":Mock.Random.integer(100,500),
 		"status":Mock.Random.integer(1, 5)
 	}));
 }
-export {Orders}
+
+export {Tasks}

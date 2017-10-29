@@ -8,7 +8,7 @@
           <div class="detail-infos control-group">
               <el-row>
                 <el-col :span="12">
-                  <el-input size="small" placeholder="请输入任务名称" style="width:200px" v-model="filters.task"></el-input>
+                  <el-input size="small" placeholder="请输入任务名称" style="width:200px" v-model="filters.task_name"></el-input>
                 </el-col>
                 <el-col :span="12">
                   <span class="detail-label is-required">Skuid:</span>
@@ -44,9 +44,9 @@
           </div>
         </div>
         <div class="detail-block">
-          <el-table :data="orders" style="width: 100%" v-loading="listLoading" element-loading-text="数据加载中">
+          <el-table :data="tasks" style="width: 100%" v-loading="listLoading" element-loading-text="数据加载中">
             <el-table-column label="序号" prop="id"></el-table-column>
-            <el-table-column label="任务名称" prop="task"></el-table-column>
+            <el-table-column label="任务名称" prop="task_name"></el-table-column>
             <el-table-column label="执行时间" prop="date"></el-table-column>
             <el-table-column label="任务数量" prop="num"></el-table-column>
             <el-table-column label="任务状态" prop="status" :formatter="formatSatus">
@@ -84,7 +84,7 @@
 <script>
 import { ipcRenderer,clipboard } from 'electron'
 import { mapGetters, mapActions } from 'vuex'
-import { getAccounts } from '../../api/account'
+import { getTaskLists } from '../../api/taskApi'
 
 let that;
 
@@ -92,13 +92,13 @@ export default {
   name: 'taskList',
   data () {
     return {
-      orders : [],
+      tasks : [],
       listLoading : true,
       total: 0,
       page : 1,
       filters: {
         id :"",
-        task: '',
+        task_name: '',
         skuid:"",
         date:"",
         status:""
@@ -124,14 +124,14 @@ export default {
       let para = {
         page: this.page,
         id: this.filters.id,
-        task:this.filters.task,
+        task_name:this.filters.task_name,
         skuid:this.filters.skuid,
         date:this.filters.date,
         status:this.filters.status
       };
       this.listLoading = true;
-      getAccounts(para).then((res) => {
-        this.orders = res.data.Orders;
+      getTaskLists(para).then((res) => {
+        this.tasks = res.data.Tasks;
         this.total = res.data.total;
         this.listLoading = false;
         console.log(res.data);
@@ -145,7 +145,7 @@ export default {
     },
     //查看任务清单，跳转到任务清单页面
     gotoTaskTodoList(index, row){
-      let link = "/task/todoList/" + row.id;
+      let link = "/tasks/todoList/" + row.id;
       this.$router.push(link);
       console.log(link);
     },
