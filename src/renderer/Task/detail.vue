@@ -67,7 +67,7 @@
           </div>
           <div class="detail-infos control-group">
             <ul>
-              <li :is="task_browser_paths.component" :text="item.paths" v-for="item in task_browser_paths"></li>
+              <input type="text" v-model='component_name'>
             </ul>
           </div>
         </div>
@@ -137,8 +137,15 @@ export default {
       beginDate_endDatae:'',
       the_browser_path:'',
       the_jd_account:'',
-      task_browser_paths : []
+      task_browser_paths : [],
+      all_components : [],
+      component_name: "browserPath"
     }
+  },
+  components: {
+   browserPath : {
+    template : "<p>我们</p>"
+   }
   },
   mounted () {
     this.getBrowserPaths();
@@ -159,11 +166,21 @@ export default {
     },
     //保存选择的浏览路径
     saveBrowserPath(){
-      if(this.the_browser_path != null){
-        this.task_browser_paths.push(this.the_browser_path);
-        console.log(this.task_browser_paths);
-      }
-    }
+      //if(this.the_browser_path != null){
+       // this.task_browser_paths.push(this.the_browser_path);
+        //console.log(this.task_browser_paths);
+      //}
+      this.all_components.push(this.component_name);
+    },
+
+    render(h) { // h 为 createElement 函数，接受三个参数
+                // tag 
+                // data
+                // children 具体看文档吧
+                return h('div',this.allComponents.map(function(componentName) {
+                    return h(componentName)
+                }))
+            }
   }
 }
 </script>

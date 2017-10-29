@@ -1,8 +1,9 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { Tasks } from "./data/task";
+import { Tasks, Todolists } from "./data/task";
 import { BrowserPaths } from "./data/browserPaths";
 let _Tasks = Tasks;
+let _Todolists = Todolists;
 let _BrowserPaths = BrowserPaths;
 
 export default {
@@ -36,6 +37,23 @@ export default {
         setTimeout(() => {
           resolve([200, {
             BrowserPaths: mockBrowserPaths
+          }]);
+        }, 1000);
+      });
+    });
+
+    //获取任务清单
+    mock.onGet("/tasks/todoList").reply(config => {
+      let {taskId, page} = config.params;
+      console.log(Todolists);
+      let mockTodolists = _Todolists;
+      let total = mockTodolists.length;
+      mockTodolists = mockTodolists.filter((u, index) => index < 5 * page && index >= 5 * (page - 1));
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            total : total,
+            Todolists: mockTodolists
           }]);
         }, 1000);
       });

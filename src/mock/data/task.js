@@ -11,4 +11,18 @@ for(let i = 0; i < 10; i++){
 	}));
 }
 
-export {Tasks}
+const Todolists = []
+for(let i = 0; i < 10; i++){
+	Todolists.push(Mock.mock({
+		"jdAccount":Mock.Random.integer(1000,10000),
+		"accountGroup":Mock.Random.string('lower', 5),
+		"browserPath":Mock.Random.string('lower', 5),
+		"todoDate":Mock.Random.date(),
+		"finishDate":Mock.Random.date(),
+		"orderId":Mock.Random.integer(100,300),
+		"orderNumbr":Mock.Random.integer(1,100),
+		"orderPrice":Mock.mock('@float(60, 100)')
+	}));
+}
+
+export { Tasks , Todolists}
