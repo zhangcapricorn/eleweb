@@ -47,11 +47,18 @@
             <el-row>
               <span class="detail-label-line is-required">选择订单所用编组账号:</span>
                 <el-select size="small" v-model="the_jd_account" placeholder="请选择"  @change="" style="width:200px">
-                  <el-option v-for="item in task_browser_paths" :value="item.paths" :label="item.paths">
+                  <el-option v-for="item in jd_accounts" :value="item.paths" :label="item.paths">
                   </el-option>
                 </el-select>
-                <el-button size="small" type="primary" @click="">添加</el-button>
+                <el-button size="small" type="primary" @click="saveAccountGroups">添加</el-button>
             </el-row>
+          </div>
+          <div class="detail-infos control-group">
+            <ul>
+              <li v-for="item in js_account_conditions">
+                <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteTag :item="item"></deleteTag>
+              </li>
+            </ul>
           </div>
         </div>
         <div class="detail-block">
@@ -67,7 +74,9 @@
           </div>
           <div class="detail-infos control-group">
             <ul>
-              <input type="text" v-model='component_name'>
+              <li v-for="item in browser_paths_conditions">
+                <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteTag :item="item"></deleteTag>
+              </li>
             </ul>
           </div>
         </div>
@@ -115,7 +124,7 @@
 <script>
 import { ipcRenderer,clipboard } from 'electron'
 import { mapGetters, mapActions } from 'vuex'
-import { getBrowserPathsList } from '../../api/browserPathsApi'
+import { getBrowserPathsList, getJDAccountList } from '../../api/browserPathsApi'
 
 let that
 export default {
@@ -128,6 +137,7 @@ export default {
       each_order_num:0,
       task_jd_accounts:[],
       browser_paths:[],
+      jd_accounts:[],
       task_delivery_rate:0,
       delivery_from:"",
       delivery_to:"",
@@ -138,17 +148,25 @@ export default {
       the_browser_path:'',
       the_jd_account:'',
       task_browser_paths : [],
-      all_components : [],
-      component_name: "browserPath"
+      browser_paths_conditions : [],
+      js_account_conditions : []
     }
   },
   components: {
-   browserPath : {
-    template : "<p>我们</p>"
+   conditionTag : {
+    props: ['item'],
+    template : '<label>条件1:{{item}}</label>',
+   },
+   rateTag :{
+    template: '<el-input-number size="small">%</el-input-number>'
+   },
+   deleteTag:{
+    template: ' <el-button size="small" type="primary" @click="deleteItem(scope.$index, scope.row)" style="float:right;" >删除</el-button>'
    }
   },
   mounted () {
     this.getBrowserPaths();
+    this.getJDAccounts();
   },
   computed: {
   },
@@ -156,31 +174,36 @@ export default {
 
     //获取浏览路径
     getBrowserPaths(){
-      this.listLoading = true;
       getBrowserPathsList().then((res) => {
         this.browser_paths = res.data.BrowserPaths;
-        this.total = res.data.total;
-        this.listLoading = false;
-        console.log(this.browser_paths);
+      });
+    },
+    //获取浏览路径
+    getJDAccounts(){
+      getJDAccountList().then((res) => {
+        this.jd_accounts = res.data.JDAccounts;
+        console.log(this.jd_accounts);
       });
     },
     //保存选择的浏览路径
     saveBrowserPath(){
-      //if(this.the_browser_path != null){
-       // this.task_browser_paths.push(this.the_browser_path);
-        //console.log(this.task_browser_paths);
-      //}
-      this.all_components.push(this.component_name);
+      if(this.the_browser_path != ""){
+        this.task_browser_paths.push(this.the_browser_path);
+        this.browser_paths_conditions.push(this.the_browser_path);
+        console.log(this.task_browser_paths);
+      }
     },
+    saveAccountGroups(){
+      if(this.the_jd_account != ""){
+        this.task_jd_accounts.push(this.the_browser_path);
+        this.js_account_conditions.push(this.the_browser_path);
+        console.log(this.task_browser_paths);
+      }
+    },
+    //删除item标签组件
+    deleteItem(row, index){
 
-    render(h) { // h 为 createElement 函数，接受三个参数
-                // tag 
-                // data
-                // children 具体看文档吧
-                return h('div',this.allComponents.map(function(componentName) {
-                    return h(componentName)
-                }))
-            }
+    }
   }
 }
 </script>

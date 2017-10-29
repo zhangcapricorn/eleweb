@@ -4,8 +4,16 @@ const BrowserPaths = []
 for(let i = 0; i < 10; i++){
 	BrowserPaths.push(Mock.mock({
 		"id":Mock.Random.integer(0,100),
-		"paths":Mock.Random.string('lower', 5)
+		"paths":Mock.Random.string('lower', 20)
 	}));
 }
-export { BrowserPaths }
+
+const JDAccounts = []
+for(let i = 0; i < 10; i++){
+	JDAccounts.push(Mock.mock({
+		"id":Mock.Random.integer(0,100),
+		"paths":Mock.Random.string('lower', 10)
+	}));
+}
+export { BrowserPaths,JDAccounts }
 

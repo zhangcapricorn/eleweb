@@ -1,10 +1,11 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { Tasks, Todolists } from "./data/task";
-import { BrowserPaths } from "./data/browserPaths";
+import { BrowserPaths, JDAccounts } from "./data/browserPaths";
 let _Tasks = Tasks;
 let _Todolists = Todolists;
 let _BrowserPaths = BrowserPaths;
+let _JDAccounts = JDAccounts;
 
 export default {
   bootstrap() {
@@ -37,6 +38,18 @@ export default {
         setTimeout(() => {
           resolve([200, {
             BrowserPaths: mockBrowserPaths
+          }]);
+        }, 1000);
+      });
+    });
+
+    //获取京东帐号
+    mock.onGet("/jdAccounts/List").reply(config => {
+      let mockJDAccounts = _JDAccounts;
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            JDAccounts: mockJDAccounts
           }]);
         }, 1000);
       });
