@@ -6,15 +6,15 @@ let _Order = Orders;
 export default {
   bootstrap() {
     let mock = new MockAdapter(axios);
-	mock.onGet("/account/List").reply(config => {
+    
+	  mock.onGet("/account/List").reply(config => {
       let {page, task} = config.params;
-      console.log(page);
       let mockOrders = _Order.filter(order => {
         if (task && order.task.indexOf(task) == -1) return false;
         return true;
       });
       let total = mockOrders.length;
-      mockOrders = mockOrders.filter((u, index) => index < 20 * page && index >= 20 * (page - 1));
+      mockOrders = mockOrders.filter((u, index) => index < 5 * page && index >= 5 * (page - 1));
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {

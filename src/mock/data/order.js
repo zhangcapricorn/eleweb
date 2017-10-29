@@ -1,7 +1,7 @@
 import Mock from "mockjs"
 
 const Orders = []
-for(let i = 0; i < 5; i++){
+for(let i = 0; i < 10; i++){
 	Orders.push(Mock.mock({
 		"id":Mock.Random.integer(100,500),
 		"task":Mock.Random.integer(100,500),

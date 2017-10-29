@@ -8,7 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'landing-page',
-      component: require('@/Task/orderPage')
+      component: require('@/TaskOld/orderPage')
     },
     {
       path:'/background',
@@ -18,12 +18,12 @@ export default new Router({
     {
         path:'/task/OrderView',
         name:'taskOrderView',
-        component: require('@/Task/orderPage')
+        component: require('@/TaskOld/orderPage')
     },
     {
         path:'/task/List',
         name:'taskList',
-        component: require('@/Task/listPage')
+        component: require('@/TaskOld/listPage')
     },
     {
         path:'/order/List',
@@ -31,14 +31,19 @@ export default new Router({
         component: require('@/Order/listPage')
     },
     {
-        path:'/account/List',
-        name:'accountList',
-        component: require('@/Account/accountList')
+        path:'/tasks/List',
+        name:'tasksList',
+        component: require('@/Task/list')
     },
     {
-        path:'/account/Detail',
-        name:'accountDetail',
-        component: require('@/Account/accountDetail')
+        path:'/tasks/Detail',
+        name:'taskDetail',
+        component: require('@/Task/detail')
+    },
+    {
+        path:'/tasks/todoList',
+        name:'taskTodoList',
+        component: require('@/Task/todoList')
     },
     {
       path: '*',
