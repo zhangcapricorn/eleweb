@@ -150,7 +150,8 @@ export default {
       the_jd_account:'',
       task_browser_paths : [],
       browser_paths_conditions : [],
-      js_account_conditions : []
+      js_account_conditions : [],
+      message : ""
     }
   },
   components: {
@@ -224,7 +225,8 @@ export default {
       };
       console.log("ddd");
       addNewTask(para).then((res) => {
-        alert(res.data.message);
+        this.message = res.data.message;
+        alert(this.message);
         console.log(res.data.message);
       });
     }

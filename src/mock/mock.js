@@ -96,7 +96,7 @@ export default {
         setTimeout(() => {
           resolve([200, {
             code: 200,
-            msg: '新增成功'
+            message: '新增成功'
           }]);
         }, 500);
       });
