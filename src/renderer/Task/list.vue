@@ -47,8 +47,8 @@
           <el-table :data="tasks" style="width: 100%" v-loading="listLoading" element-loading-text="数据加载中">
             <el-table-column label="序号" prop="id"></el-table-column>
             <el-table-column label="任务名称" prop="task_name"></el-table-column>
-            <el-table-column label="执行时间" prop="date"></el-table-column>
-            <el-table-column label="任务数量" prop="num"></el-table-column>
+            <el-table-column label="执行时间" prop="beginDate"></el-table-column>
+            <el-table-column label="任务数量" prop="task_order_num"></el-table-column>
             <el-table-column label="任务状态" prop="status" :formatter="formatSatus">
 
             </el-table-column>
@@ -131,7 +131,7 @@ export default {
       };
       this.listLoading = true;
       getTaskLists(para).then((res) => {
-        this.tasks = res.data.Tasks;
+        this.tasks = res.data.TaskLists;
         this.total = res.data.total;
         this.listLoading = false;
         console.log(res.data);

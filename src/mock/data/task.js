@@ -1,17 +1,28 @@
 import Mock from "mockjs"
 
-const Tasks = []
+const TaskLists = [];
 for(let i = 0; i < 10; i++){
-	Tasks.push(Mock.mock({
+	TaskLists.push(Mock.mock({
 		"id":Mock.Random.integer(100,500),
-		"task_name":Mock.Random.string('lower', 5),
-		"date":Mock.Random.date(),
-		"num":Mock.Random.integer(100,500),
-		"status":Mock.Random.integer(1, 5)
+	  	"task_name":Mock.Random.string('lower', 5),
+      	"task_order_num":Mock.Random.integer(10,100),
+	    "task_buy_num":Mock.Random.integer(10,50),
+      	"each_order_num":Mock.Random.integer(1,10),
+      	task_jd_accounts:[],
+      	task_browser_paths : [],
+      	"task_delivery_rate":Mock.mock('@float(60, 100)'),
+      	"delivery_from":Mock.Random.integer(1,10),
+      	"delivery_to":Mock.Random.integer(1,10),
+      	"task_confirm_rate":Mock.mock('@float(60, 100)'),
+      	"confirm_from":Mock.Random.integer(1,10),
+      	"confirm_to":Mock.Random.integer(1,10),
+      	"beginDate":Mock.Random.date(),
+      	"endDate":Mock.Random.date(),
+      	"status":Mock.Random.integer(1, 5)
 	}));
-}
+};
 
-const Todolists = []
+const Todolists = [];
 for(let i = 0; i < 10; i++){
 	Todolists.push(Mock.mock({
 		"jdAccount":Mock.Random.integer(1000,10000),
@@ -23,6 +34,6 @@ for(let i = 0; i < 10; i++){
 		"orderNumbr":Mock.Random.integer(1,100),
 		"orderPrice":Mock.mock('@float(60, 100)')
 	}));
-}
+};
 
-export { Tasks , Todolists}
+export { TaskLists , Todolists}

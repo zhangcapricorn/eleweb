@@ -1,8 +1,8 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { Tasks, Todolists } from "./data/task";
+import { TaskLists, Todolists } from "./data/task";
 import { BrowserPaths, JDAccounts } from "./data/browserPaths";
-let _Tasks = Tasks;
+let _TaskLists = TaskLists;
 let _Todolists = Todolists;
 let _BrowserPaths = BrowserPaths;
 let _JDAccounts = JDAccounts;
@@ -14,17 +14,17 @@ export default {
     //获取任务列表
 	  mock.onGet("/task/List").reply(config => {
       let {page, task} = config.params;
-      let mockTask = _Tasks.filter(task => {
+      let mockTaskLists = _TaskLists.filter(task => {
        // if (task_name && task.task_name.indexOf(task_name) == -1) return false;
         return true;
       });
-      let total = mockTask.length;
-      mockTask = mockTask.filter((u, index) => index < 5 * page && index >= 5 * (page - 1));
+      let total = mockTaskLists.length;
+      mockTaskLists = mockTaskLists.filter((u, index) => index < 5 * page && index >= 5 * (page - 1));
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {
             total: total,
-            Tasks: mockTask
+            TaskLists: mockTaskLists
           }]);
         }, 1000);
         //console.log(Tasks);
@@ -69,6 +69,36 @@ export default {
             Todolists: mockTodolists
           }]);
         }, 1000);
+      });
+    });
+
+    mock.onGet().reply(config => {
+      let { task_name, task_order_num, task_buy_num, each_order_num, task_jd_accounts, task_browser_paths, task_delivery_rate, 
+        delivery_from, delivery_to, task_confirm_rate, confirm_from, confirm_to, beginDate, endDatae} = config.params;
+      _TaskLists.push({
+        task_name : task_name,
+        task_order_num:task_order_num,
+        task_buy_num:task_buy_num,
+        each_order_num:each_order_num,
+        task_jd_accounts:task_jd_accounts,
+        task_browser_paths : task_browser_paths,
+        task_delivery_rate:task_delivery_rate,
+        delivery_from:delivery_from,
+        delivery_to:delivery_to,
+        task_confirm_rate:task_confirm_rate,
+        confirm_from:confirm_from,
+        confirm_to:confirm_to,
+        beginDate:beginDate,
+        endDatae:endDatae,
+        status : "未开始"
+      });
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            msg: '新增成功'
+          }]);
+        }, 500);
       });
     });
 	}

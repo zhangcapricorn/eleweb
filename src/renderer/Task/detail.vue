@@ -4,7 +4,7 @@
       <el-card class="box-card">
         <div slot="header" class="clearfix">
           <span style="line-height: 24px;font-weight:blod;">发布订单任务</span>
-          <el-button style="float: right;" size="small" type="primary" @click="">发布</el-button>
+          <el-button style="float: right;" size="small" type="primary" @click="insertNewTask">发布</el-button>
         </div>
 
         <div class="detail-block">
@@ -125,6 +125,7 @@
 import { ipcRenderer,clipboard } from 'electron'
 import { mapGetters, mapActions } from 'vuex'
 import { getBrowserPathsList, getJDAccountList } from '../../api/browserPathsApi'
+import { addNewTask } from '../../api/taskApi'
 
 let that
 export default {
@@ -195,14 +196,37 @@ export default {
     },
     saveAccountGroups(){
       if(this.the_jd_account != ""){
-        this.task_jd_accounts.push(this.the_browser_path);
-        this.js_account_conditions.push(this.the_browser_path);
+        this.task_jd_accounts.push(this.the_jd_account);
+        this.js_account_conditions.push(this.the_jd_account);
         console.log(this.task_browser_paths);
       }
     },
     //删除item标签组件
     deleteItem(row, index){
 
+    },
+    insertNewTask(){
+      let para = {
+        task_name : this.task_name,
+        task_order_num : this.task_order_num,
+        task_buy_num : this.task_buy_num,
+        each_order_num : this.each_order_num,
+        task_jd_accounts : this.task_jd_accounts,
+        task_browser_paths : this.task_browser_paths,
+        task_delivery_rate : this.task_delivery_rate,
+        delivery_from : this.delivery_from,
+        delivery_to : this.delivery_to,
+        task_confirm_rate : this.task_confirm_rate,
+        confirm_from : this.confirm_from,
+        confirm_to : this.confirm_to,
+        beginDate : this.beginDate,
+        endDatae : this.endDatae
+      };
+      console.log("ddd");
+      addNewTask(para).then((res) => {
+        alert(res.data.message);
+        console.log(res.data.message);
+      });
     }
   }
 }
