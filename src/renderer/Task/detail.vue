@@ -47,7 +47,7 @@
             <el-row>
               <span class="detail-label-line is-required">选择订单所用编组账号:</span>
                 <el-select size="small" v-model="the_jd_account" placeholder="请选择"  @change="" style="width:200px">
-                  <el-option v-for="item in jd_accounts" :value="item.paths" :label="item.paths">
+                  <el-option v-for="(item, idx) in jd_accounts" :key="idx" :value="item.paths" :label="item.paths">
                   </el-option>
                 </el-select>
                 <el-button size="small" type="primary" @click="saveAccountGroups">添加</el-button>
@@ -55,7 +55,7 @@
           </div>
           <div class="detail-infos control-group">
             <ul>
-              <li v-for="item in js_account_conditions">
+              <li v-for="(item, idx) in js_account_conditions" :key="idx">
                 <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteTag :item="item"></deleteTag>
               </li>
             </ul>
@@ -66,7 +66,7 @@
             <el-row>
               <span class="detail-label-line is-required">选择订单所用编组路径:</span>
                 <el-select size="small" v-model="the_browser_path" placeholder="请选择" style="width:200px">
-                  <el-option v-for="item in browser_paths" :value="item.paths" :label="item.paths">
+                  <el-option v-for="(item, idx) in browser_paths" :key="idx" :value="item.paths" :label="item.paths">
                   </el-option>
                 </el-select>
                 <el-button size="small" type="primary" @click="saveBrowserPath">添加</el-button>
@@ -74,7 +74,7 @@
           </div>
           <div class="detail-infos control-group">
             <ul>
-              <li v-for="item in browser_paths_conditions">
+              <li v-for="(item, idx) in browser_paths_conditions" :key="idx">
                 <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteTag :item="item"></deleteTag>
               </li>
             </ul>
@@ -163,7 +163,7 @@ export default {
     template: '<el-input-number size="small">%</el-input-number>'
    },
    deleteTag:{
-    template: ' <el-button size="small" type="primary" @click="deleteItem(scope.$index, scope.row)" style="float:right;" >删除</el-button>'
+    template: ' <el-button size="small" type="primary" @click="deleteItem()" style="float:right;" >删除</el-button>'
    }
   },
   mounted () {

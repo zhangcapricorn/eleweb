@@ -53,9 +53,9 @@
 
             </el-table-column>
             <el-table-column label="操作查看" >
-              <template scope="scope">
-                <el-button size="small" @click="editTask(scope.$index, scope.row)" >编辑</el-button>
-                <el-button size="small" @click="gotoTaskTodoList(scope.$index, scope.row)" >查看</el-button>
+              <template slot-scope="item">
+                <el-button size="small" @click="editTask(item.$index, item.row)" >编辑</el-button>
+                <el-button size="small" @click="gotoTaskTodoList(item.$index, item.row)" >查看</el-button>
               </template>
             </el-table-column>
           </el-table>
