@@ -56,7 +56,7 @@
           <div class="detail-infos control-group">
             <ul>
               <li v-for="(item, idx) in js_account_conditions" :key="idx" v-model="task_jd_accounts">
-                <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteAccountTag :idx="idx" :task_jd_accounts="task_jd_accounts"></deleteAccountTag>
+                <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteAccountTag :idx="idx" v-bind:accounts="task_jd_accounts"></deleteAccountTag>
               </li>
             </ul>
           </div>
@@ -163,11 +163,11 @@ export default {
     template: '<el-input-number size="small"></el-input-number>'
    },
    deleteAccountTag:{
-    props: ['idx', 'task_jd_accounts'],
-    template: '<el-button size="small" type="primary" @click="deleteAccount(idx)" style="float:right;">删除</el-button>',
+    props: ['idx', 'accounts'],
+    template: '<el-button size="small" type="primary" @click="deleteAccount(idx, accounts)" style="float:right;">删除</el-button>',
     methods: {
-      deleteAccount(idx, task_jd_accounts){
-        console.log(task_jd_accounts);
+      deleteAccount(idx, accounts){
+        console.log(accounts);
         //this.task_jd_accounts.$remove(idx); 
         //this.js_account_conditions.$remove(idx);
       }
