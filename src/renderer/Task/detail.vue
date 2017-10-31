@@ -55,8 +55,8 @@
           </div>
           <div class="detail-infos control-group">
             <ul>
-              <li v-for="(item, idx) in js_account_conditions" :key="idx">
-                <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteTag :item="item"></deleteTag>
+              <li v-for="(item, idx) in js_account_conditions" :key="idx" v-model="task_jd_accounts">
+                <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteAccountTag :idx="idx" :task_jd_accounts="task_jd_accounts"></deleteAccountTag>
               </li>
             </ul>
           </div>
@@ -75,7 +75,7 @@
           <div class="detail-infos control-group">
             <ul>
               <li v-for="(item, idx) in browser_paths_conditions" :key="idx">
-                <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteTag :item="item"></deleteTag>
+                <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteBrowserTag :idx="idx"></deleteBrowserTag>
               </li>
             </ul>
           </div>
@@ -157,14 +157,32 @@ export default {
   components: {
    conditionTag : {
     props: ['item'],
-    template : '<label>条件1:{{item}}</label>',
+    template : '<label>条件1:{{item}} 占比: </label>',
    },
    rateTag :{
-    template: '<el-input-number size="small">%</el-input-number>'
+    template: '<el-input-number size="small"></el-input-number>'
    },
-   deleteTag:{
-    template: ' <el-button size="small" type="primary" @click="deleteItem()" style="float:right;" >删除</el-button>'
-   }
+   deleteAccountTag:{
+    props: ['idx', 'task_jd_accounts'],
+    template: '<el-button size="small" type="primary" @click="deleteAccount(idx)" style="float:right;">删除</el-button>',
+    methods: {
+      deleteAccount(idx, task_jd_accounts){
+        console.log(task_jd_accounts);
+        //this.task_jd_accounts.$remove(idx); 
+        //this.js_account_conditions.$remove(idx);
+      }
+    },
+   },
+   deleteBrowserTag:{
+      props: ['idx'],
+      template: '<el-button size="small" type="primary" @click="deleteBrowser(idx)" style="float:right;">删除</el-button>',
+      methods: {
+        deleteBrowser(idx){
+          this.task_browser_paths.splice(idx); 
+          this.browser_paths_conditions.splice(idx);
+        }
+      }
+    } 
   },
   mounted () {
     this.getBrowserPaths();
@@ -189,22 +207,27 @@ export default {
     },
     //保存选择的浏览路径
     saveBrowserPath(){
-      if(this.the_browser_path != ""){
+      if(this.task_browser_paths.length > 10){
+        alert("超过长度设置");
+      }else if(this.the_browser_path != ""){
         this.task_browser_paths.push(this.the_browser_path);
         this.browser_paths_conditions.push(this.the_browser_path);
         console.log(this.task_browser_paths);
+      }else{
+        alert("请选择浏览路径");
       }
     },
+    //保存所选择账号组
     saveAccountGroups(){
-      if(this.the_jd_account != ""){
+      if(this.task_jd_accounts.length > 10){
+        alert("超过长度设置");
+      }else if(this.the_jd_account != ""){
         this.task_jd_accounts.push(this.the_jd_account);
         this.js_account_conditions.push(this.the_jd_account);
         console.log(this.task_browser_paths);
+      }else{
+        alert("请选择账号组");
       }
-    },
-    //删除item标签组件
-    deleteItem(row, index){
-
     },
     insertNewTask(){
       let para = {
