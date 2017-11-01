@@ -11,12 +11,13 @@
                   <el-radio-group v-model="processState" @change="filterProcess">
                     <el-radio class="radio" label="1" size="small">待付款</el-radio>
                     <el-radio class="radio" label="2" size="small">待确认收货</el-radio>
+                    <el-radio class="radio" label="3" size="small">完成</el-radio>
                   </el-radio-group>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="16">
-                  <p v-loading="listLoading">统计：总任务{{total}}个,待付款{{unPayfor}}个,待确认收货{{unDelivery}}个</p>
+                  <p v-loading="listLoading">统计：总任务{{total}}个,待付款{{unPayfor}}个,待确认收货{{unDelivery}}个,完成{{finished}}</p>
                 </el-col>
               </el-row>
           </div>
@@ -69,10 +70,11 @@ export default {
       taskId :0,
       todolist : [],
       listLoading : true,
-      processState : 0,
+      processState : "3",
       todoListNumber : 0,
       unPayfor:0,
       unDelivery:0,
+      finished:0,
       total:0,
       page:1
     }
