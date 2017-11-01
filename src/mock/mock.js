@@ -59,12 +59,27 @@ export default {
       let {taskId, page} = config.params;
       let mockTodolists = _Todolists;
       let total = mockTodolists.length;
+      let unPayfor = 0;
+      let unDelivery = 0;
+      let finished = 0;
+      for(let i = 0, size = mockTodolists.length; i < size; i++){
+        if(mockTodolists[i]["processState"] == 1){
+          unPayfor += 1;
+        }else if(mockTodolists[i]["processState"] == 2){
+          unDelivery +=1;
+        }else{
+          finished += 1;
+        }
+      }
       mockTodolists = mockTodolists.filter((u, index) => index < 5 * page && index >= 5 * (page - 1));
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {
             total : total,
-            Todolists: mockTodolists
+            Todolists: mockTodolists, 
+            unPayfor : unPayfor,
+            unDelivery:unDelivery,
+            finished:finished
           }]);
         }, 1000);
       });

@@ -16,8 +16,10 @@ export default {
       this.listLoading = true;
       getTodoLists(para).then((res) => {
         this.todolist = res.data.Todolists;
+        this.unPayfor = res.data.unPayfor;
+        this.unDelivery = res.data.unDelivery;
+        this.finished = res.data.finished;
         this.formatSatus();
-        this.computeNumber();
         this.total = res.data.total;
         this.listLoading = false;
       });
@@ -49,15 +51,4 @@ export default {
         }
       }
     },
-    computeNumber(){
-      for(let i = 0, size = this.todolist.length; i < size; i++){
-        if(this.todolist[i]["processState"] == 1){
-          this.unPayfor += 1;
-        }else if(this.todolist[i]["processState"] == 2){
-          this.unDelivery +=1;
-        }else{
-          this.finished += 1;
-        }
-      }
-    }
 }
