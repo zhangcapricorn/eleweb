@@ -18,7 +18,7 @@ for(let i = 0; i < 10; i++){
       	"confirm_to":Mock.Random.integer(1,10),
       	"beginDate":Mock.Random.date(),
       	"endDate":Mock.Random.date(),
-      	"status":Mock.Random.integer(1, 5)
+      	"statusId":Mock.Random.integer(1, 5)
 	}));
 };
 
@@ -32,7 +32,8 @@ for(let i = 0; i < 10; i++){
 		"finishDate":Mock.Random.date(),
 		"orderId":Mock.Random.integer(100,300),
 		"orderNumbr":Mock.Random.integer(1,100),
-		"orderPrice":Mock.mock('@float(60, 100)')
+		"orderPrice":Mock.mock('@float(60, 100)'),
+        'processState':Mock.Random.integer(1, 3)
 	}));
 };
 

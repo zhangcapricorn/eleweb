@@ -49,8 +49,7 @@
             <el-table-column label="任务名称" prop="task_name"></el-table-column>
             <el-table-column label="执行时间" prop="beginDate"></el-table-column>
             <el-table-column label="任务数量" prop="task_order_num"></el-table-column>
-            <el-table-column label="任务状态" prop="status" :formatter="formatSatus">
-
+            <el-table-column label="任务状态" prop="status">
             </el-table-column>
             <el-table-column label="操作查看" >
               <template slot-scope="item">
@@ -84,7 +83,7 @@
 <script>
 import { ipcRenderer,clipboard } from 'electron'
 import { mapGetters, mapActions } from 'vuex'
-import { getTaskLists } from '../../api/taskApi'
+import methods from './listJS'
 
 let that;
 
@@ -118,52 +117,7 @@ export default {
   },
   computed: {
   },
-  methods: {
-    //获取任务列表
-    getTasksListInfo() {
-      let para = {
-        page: this.page,
-        id: this.filters.id,
-        task_name:this.filters.task_name,
-        skuid:this.filters.skuid,
-        date:this.filters.date,
-        status:this.filters.status
-      };
-      this.listLoading = true;
-      getTaskLists(para).then((res) => {
-        this.tasks = res.data.TaskLists;
-        this.total = res.data.total;
-        this.listLoading = false;
-        console.log(res.data);
-      });
-    },
-    //编辑任务信息，跳转到任务详情页面
-    editTask(index, row) {
-      let link = "/tasks/Detail/" + row.id;
-      this.$router.push(link);
-      console.log(link);
-    },
-    //查看任务清单，跳转到任务清单页面
-    gotoTaskTodoList(index, row){
-      let link = "/tasks/todoList/" + row.id;
-      this.$router.push(link);
-      console.log(link);
-    },
-    //翻页
-    handleCurrentChange(val){
-      this.page = val;
-      this.getTasksListInfo();
-    },
-    //查询
-    searchTask(){
-      this.getTasksListInfo();
-    },
-    //根据状态id展示状态值
-    formatSatus(row, column){
-      let statusId = row.status;
-      return JSON.parse(JSON.stringify(this.status))[statusId]["label"];
-    }
-  }
+  methods: methods
   
 }
 </script>

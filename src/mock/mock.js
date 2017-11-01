@@ -27,7 +27,6 @@ export default {
             TaskLists: mockTaskLists
           }]);
         }, 1000);
-        //console.log(Tasks);
       });
     });
 
@@ -56,9 +55,8 @@ export default {
     });
 
     //获取任务清单
-    mock.onGet("/tasks/todoList").reply(config => {
+    mock.onGet("/tasks/todoList/list").reply(config => {
       let {taskId, page} = config.params;
-      console.log(Todolists);
       let mockTodolists = _Todolists;
       let total = mockTodolists.length;
       mockTodolists = mockTodolists.filter((u, index) => index < 5 * page && index >= 5 * (page - 1));
@@ -72,7 +70,7 @@ export default {
       });
     });
 
-    mock.onGet().reply(config => {
+    mock.onGet('/tasks/add').reply(config => {
       let { task_name, task_order_num, task_buy_num, each_order_num, task_jd_accounts, task_browser_paths, task_delivery_rate, 
         delivery_from, delivery_to, task_confirm_rate, confirm_from, confirm_to, beginDate, endDatae} = config.params;
       _TaskLists.push({

@@ -55,8 +55,8 @@
           </div>
           <div class="detail-infos control-group">
             <ul>
-              <li v-for="(item, idx) in js_account_conditions" :key="idx" v-model="task_jd_accounts">
-                <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteAccountTag :idx="idx" v-bind:accounts="task_jd_accounts"></deleteAccountTag>
+              <li v-for="(item, idx) in jd_account_conditions" :key="idx" v-model="task_jd_accounts">
+                <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteAccountTag :idx="idx" @delAccount="spliceAccounts"></deleteAccountTag>
               </li>
             </ul>
           </div>
@@ -75,7 +75,7 @@
           <div class="detail-infos control-group">
             <ul>
               <li v-for="(item, idx) in browser_paths_conditions" :key="idx">
-                <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteBrowserTag :idx="idx"></deleteBrowserTag>
+                <conditionTag :item="item"></conditionTag><rateTag :item="item"></rateTag><deleteBrowserTag :idx="idx" @delBrowser="spliceBrowsers"></deleteBrowserTag>
               </li>
             </ul>
           </div>
@@ -149,7 +149,7 @@ export default {
       the_jd_account:'',
       task_browser_paths : [],
       browser_paths_conditions : [],
-      js_account_conditions : [],
+      jd_account_conditions : [],
       message : ""
     }
   },
@@ -162,13 +162,11 @@ export default {
     template: '<el-input-number size="small"></el-input-number>'
    },
    deleteAccountTag:{
-    props: ['idx', 'accounts'],
+    props: ['idx'],
     template: '<el-button size="small" type="primary" @click="deleteAccount(idx, accounts)" style="float:right;">删除</el-button>',
     methods: {
-      deleteAccount(idx, accounts){
-        console.log(accounts);
-        //this.task_jd_accounts.$remove(idx); 
-        //this.js_account_conditions.$remove(idx);
+      deleteAccount(idx){
+        this.$emit("delAccount", idx);
       }
     },
    },
@@ -177,8 +175,7 @@ export default {
       template: '<el-button size="small" type="primary" @click="deleteBrowser(idx)" style="float:right;">删除</el-button>',
       methods: {
         deleteBrowser(idx){
-          this.task_browser_paths.splice(idx); 
-          this.browser_paths_conditions.splice(idx);
+          this.$emit("delBrowser", idx);
         }
       }
     } 

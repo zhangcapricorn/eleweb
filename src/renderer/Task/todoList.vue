@@ -8,8 +8,10 @@
           <div class="detail-infos control-group">
               <el-row>
                 <el-col :span="6">
-                  <el-radio v-model="radio" label="1" size="small">待付款</el-radio>
-                  <el-radio v-model="radio" label="2" size="small">待确认收货</el-radio>
+                  <el-radio-group v-model="processState" @change="filterProcess">
+                    <el-radio class="radio" label="1" size="small">待付款</el-radio>
+                    <el-radio class="radio" label="2" size="small">待确认收货</el-radio>
+                  </el-radio-group>
                 </el-col>
               </el-row>
               <el-row>
@@ -29,12 +31,7 @@
             <el-table-column label="订单编号" prop="orderId"></el-table-column>
             <el-table-column label="商品数" prop="orderNumbr"></el-table-column>
             <el-table-column label="下单金额" prop="orderPrice"></el-table-column>
-            <el-table-column label="操作查看" >
-              <!-- <template scope="scope">
-                <el-button size="small" @click="editTask(scope.$index, scope.row)" >编辑</el-button>
-                <el-button size="small" @click="gotoTaskTodoList(scope.$index, scope.row)" >查看</el-button>
-              </template>-->
-            </el-table-column>
+            <el-table-column label="操作查看" prop="process"></el-table-column>
           </el-table>
           <el-col :span="24" class="toolbar">
             <el-pagination layout="prev, pager, next" size="small" :page-size="5" :total="total" @current-change="handleCurrentChange" style="float:right;">
@@ -61,7 +58,7 @@
 <script>
 import { ipcRenderer,clipboard } from 'electron'
 import { mapGetters, mapActions } from 'vuex'
-import { getTodoLists } from '../../api/taskApi'
+import methods from './todoListJS'
 
 let that;
 
@@ -72,43 +69,20 @@ export default {
       taskId :0,
       todolist : [],
       listLoading : true,
-      radio : '1',
+      processState : 0,
       todoListNumber : 0,
       unPayfor:0,
       unDelivery:0,
       total:0,
-      page:1,
+      page:1
     }
   },
   mounted () { 
+    this.getTaskID();
     this.getTodoInfo();
   },
   computed: {
   },
-  methods: {
-    //获取任务列表
-    getTodoInfo() {
-      let path = this.$router.currentRoute.path;
-      let taskId = path.split("/")[3];
-      let para = {
-        taskId: taskId,
-        page:this.page
-      };
-      this.listLoading = true;
-      getTodoLists(para).then((res) => {
-        this.todolist = res.data.Todolists;
-        this.total = res.data.total;
-        this.listLoading = false;
-        console.log(res.data);
-      });
-    },
-    
-    //翻页
-    handleCurrentChange(val){
-      this.page = val;
-      this.getTodoInfo();
-    },
-  }
-  
+  methods: methods
 }
 </script>

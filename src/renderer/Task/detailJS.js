@@ -12,7 +12,6 @@ export default {
     getJDAccounts(){
       getJDAccountList().then((res) => {
         this.jd_accounts = res.data.JDAccounts;
-        console.log(this.jd_accounts);
       });
     },
     //保存选择的浏览路径
@@ -22,7 +21,6 @@ export default {
       }else if(this.the_browser_path != ""){
         this.task_browser_paths.push(this.the_browser_path);
         this.browser_paths_conditions.push(this.the_browser_path);
-        console.log(this.task_browser_paths);
       }else{
         alert("请选择浏览路径");
       }
@@ -33,12 +31,22 @@ export default {
         alert("超过长度设置");
       }else if(this.the_jd_account != ""){
         this.task_jd_accounts.push(this.the_jd_account);
-        this.js_account_conditions.push(this.the_jd_account);
-        console.log(this.task_browser_paths);
+        this.jd_account_conditions.push(this.the_jd_account);
       }else{
         alert("请选择账号组");
       }
     },
+    //删除添加的账号组件
+    spliceAccounts(idx){
+      this.task_jd_accounts.splice(idx, 1); 
+      this.jd_account_conditions.splice(idx, 1); 
+    },
+    //删除添加的路径组件
+    spliceBrowsers(idx){
+      this.task_browser_paths.splice(idx, 1); 
+      this.browser_paths_conditions.splice(idx, 1); 
+    },
+    //添加新任务
     insertNewTask(){
       let para = {
         task_name : this.task_name,
@@ -56,11 +64,9 @@ export default {
         beginDate : this.beginDate,
         endDatae : this.endDatae
       };
-      console.log("ddd");
       addNewTask(para).then((res) => {
         this.message = res.data.message;
         alert(this.message);
-        console.log(res.data.message);
       });
     }
 }
