@@ -35,7 +35,7 @@
             </el-table-column>
             <el-table-column label="操作查看" >
               <template slot-scope="item">
-                <el-button size="small" @click="editTask(item.$index, item.row)" >编辑</el-button>
+                <el-button size="small" @click="editGroup(item.$index, item.row)" >编辑</el-button>
                 <el-button size="small" @click="delGroup(item.$index, item.row)" >删除</el-button>
               </template>
             </el-table-column>
