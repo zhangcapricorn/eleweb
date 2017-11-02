@@ -1,7 +1,7 @@
 import Mock from "mockjs"
 
 const TaskLists = [];
-for(let i = 0; i < 10; i++){
+for(let i = 0; i < 19; i++){
 	TaskLists.push(Mock.mock({
 		"id":Mock.Random.integer(100,500),
 	  	"task_name":Mock.Random.string('lower', 5),
@@ -23,7 +23,7 @@ for(let i = 0; i < 10; i++){
 };
 
 const Todolists = [];
-for(let i = 0; i < 10; i++){
+for(let i = 0; i < 19; i++){
 	Todolists.push(Mock.mock({
 		"jdAccount":Mock.Random.integer(1000,10000),
 		"accountGroup":Mock.Random.string('lower', 5),

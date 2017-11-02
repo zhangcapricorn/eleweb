@@ -1,7 +1,7 @@
 import Mock from "mockjs"
 
 const BrowserPaths = []
-for(let i = 0; i < 10; i++){
+for(let i = 0; i < 19; i++){
 	BrowserPaths.push(Mock.mock({
 		"id":Mock.Random.integer(0,100),
 		"paths":Mock.Random.string('lower', 20)
@@ -9,7 +9,7 @@ for(let i = 0; i < 10; i++){
 }
 
 const JDAccounts = []
-for(let i = 0; i < 10; i++){
+for(let i = 0; i < 19; i++){
 	JDAccounts.push(Mock.mock({
 		"id":Mock.Random.integer(0,100),
 		"paths":Mock.Random.string('lower', 10)

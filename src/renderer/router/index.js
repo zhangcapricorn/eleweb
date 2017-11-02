@@ -46,6 +46,21 @@ export default new Router({
         component: require('@/Task/todoList')
     },
     {
+        path:'/account/statistics',
+        name:'accountStatistics',
+        component: require('@/Account/statistics')
+    },
+    {
+        path:'/account/list',
+        name:'accountList',
+        component: require('@/Account/list')
+    },
+    {
+        path:'/account/detail/:id',
+        name:'accountDetail',
+        component: require('@/Account/detail')
+    },
+    {
       path: '*',
       redirect: '/'
     }
