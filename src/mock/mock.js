@@ -2,7 +2,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { TaskLists, Todolists } from "./data/task";
 import { BrowserPaths, JDAccounts } from "./data/browserPaths";
-import { Groups, AccountLevel, AccountViews, AccountOrderStatus, AccountComment, AccountCitys } from "./data/accounts";
+import { Groups, AccountLevel, AccountViews, AccountOrderStatus, AccountComment, AccountCitys, AccountStatistics } from "./data/accounts";
 let _TaskLists = TaskLists;
 let _Todolists = Todolists;
 let _BrowserPaths = BrowserPaths;
@@ -13,6 +13,8 @@ let _AccountViews = AccountViews;
 let _AccountOrderStatus = AccountOrderStatus;
 let _AccountComment = AccountComment;
 let _AccountCitys = AccountCitys;
+let _AccountStatistics = AccountStatistics;
+
 let _PageNum = 5;
 
 export default {
@@ -236,6 +238,18 @@ export default {
             msg: '删除成功'
           }]);
         }, 500);
+      });
+    });
+
+    //获取编组统计信息
+    mock.onGet("/group/statistics").reply(config => {
+      let mockAccountStatistics = _AccountStatistics;
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            AccountStatistics: mockAccountStatistics
+          }]);
+        }, 1000);
       });
     });
 	}

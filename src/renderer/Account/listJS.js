@@ -14,7 +14,6 @@ export default {
             this.total = res.data.total;
             this.listLoading = false;
         });
-
     },
     //翻页
     handleCurrentChange(val){

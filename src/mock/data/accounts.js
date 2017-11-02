@@ -29,6 +29,33 @@ const AccountStatistics = Mock.mock({
     'unavailableAccount' : Mock.Random.integer(100,500),
     'usedAccount' : Mock.Random.integer(100,500),
     'unusedAccount' : Mock.Random.integer(100,500),
+    'accountView' : [
+        {"key":'<0', "value":Mock.Random.integer(100,500)},
+        {"key":'>=1<2', "value":Mock.Random.integer(100,500)},
+        {"key":'>=2<5', "value":Mock.Random.integer(100,500)},
+        {"key":'>=5<10', "value":Mock.Random.integer(100,500)},
+        {"key":'>=10', "value":Mock.Random.integer(100,500)}
+    ],
+    'accountOrderStatus' : [
+        {"key":'<0', "value":Mock.Random.integer(100,500)},
+        {"key":'>=1<2', "value":Mock.Random.integer(100,500)},
+        {"key":'>=2<3', "value":Mock.Random.integer(100,500)},
+        {"key":'>=3', "value":Mock.Random.integer(100,500)}
+    ],
+    'accountComment' : [
+        {"key":'<0', "value":Mock.Random.integer(100,500)},
+        {"key":'>=1<2', "value":Mock.Random.integer(100,500)},
+        {"key":'>=2<5', "value":Mock.Random.integer(100,500)},
+        {"key":'>=5<10', "value":Mock.Random.integer(100,500)},
+        {"key":'>=10', "value":Mock.Random.integer(100,500)}
+    ],
+    'accountCitys' :  [
+        {"key":'北京', "value":Mock.Random.integer(100,500)},
+        {"key":'上海', "value":Mock.Random.integer(100,500)},
+        {"key":'深圳', "value":Mock.Random.integer(100,500)},
+        {"key":'四川', "value":Mock.Random.integer(100,500)},
+        {"key":'昆明', "value":Mock.Random.integer(100,500)}
+    ],
 })
 
-export {Groups, AccountLevel, AccountViews, AccountOrderStatus, AccountComment, AccountCitys}
+export {Groups, AccountLevel, AccountViews, AccountOrderStatus, AccountComment, AccountCitys, AccountStatistics}
