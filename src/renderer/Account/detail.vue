@@ -24,7 +24,7 @@
               <el-col :span="24">
                 <span class="detail-label is-required">账号等级选择:</span>
                 <el-checkbox-group v-model="checkedALevels">
-                  <el-checkbox v-for="item in accountLevel" :label="item"></el-checkbox>
+                  <el-checkbox v-for="(item, idx) in accountLevel" :key="idx" :label="item"></el-checkbox>
                 </el-checkbox-group>
               </el-col>
             </el-row>
@@ -45,7 +45,7 @@
               <el-col :span="24">
                 <span class="detail-label-line is-required">账号浏览选择（t-1周日均）:</span>
                 <el-checkbox-group v-model="checkedAViews">
-                  <el-checkbox v-for="item in accountViews" :label="item"></el-checkbox>
+                  <el-checkbox v-for="(item, idx) in accountViews" :label="item" :key="idx"></el-checkbox>
                 </el-checkbox-group>
               </el-col>
             </el-row>
@@ -53,7 +53,7 @@
               <el-col :span="24">
                 <span class="detail-label-line is-required">账户下单情况（t-1日）:</span>
                 <el-checkbox-group v-model="checkedAOrderStatus">
-                  <el-checkbox v-for="item in accountOrderStatus" :label="item"></el-checkbox>
+                  <el-checkbox v-for="(item, idx) in accountOrderStatus" :key="idx" :label="item"></el-checkbox>
                 </el-checkbox-group>
               </el-col>
             </el-row>
@@ -61,7 +61,7 @@
               <el-col :span="24">
                 <span class="detail-label-line is-required">账户评价情况（t-1周均）:</span>
                 <el-checkbox-group v-model="checkedAComments">
-                  <el-checkbox v-for="item in accountComment" :label="item"></el-checkbox>
+                  <el-checkbox v-for="(item, idx) in accountComment" :key="idx" :label="item"></el-checkbox>
                 </el-checkbox-group>
               </el-col>
             </el-row>
@@ -69,7 +69,7 @@
               <el-col :span="24">
                 <span class="detail-label-line is-required">账户归属城市:</span>
                 <el-checkbox-group v-model="checkedACitys">
-                  <el-checkbox v-for="item in accountCitys" :label="item"></el-checkbox>
+                  <el-checkbox v-for="(item, idx) in accountCitys" :key="idx" :label="item"></el-checkbox>
                 </el-checkbox-group>
               </el-col>
             </el-row>

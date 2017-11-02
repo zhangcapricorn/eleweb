@@ -33,7 +33,7 @@
               <el-col :span="12">
                 <span class="detail-label is-required">状态查询:</span>
                 <el-select size="small" placeholder="请选择" style="width:200px" v-model="filters.status">
-                  <el-option v-for="item in status" :value="item.id" :label="item.label" :key="item.label">
+                  <el-option v-for="(item, idx) in status" :value="item.id" :label="item.label" :key="item.label">
                   </el-option>
                 </el-select>
               </el-col>
