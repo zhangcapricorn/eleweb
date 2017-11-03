@@ -61,6 +61,16 @@ export default new Router({
         component: require('@/Account/detail')
     },
     {
+        path:'/browserPath/list',
+        name:'browserPathList',
+        component: require('@/BrowserPath/list')
+    },
+    {
+        path:'/browserPath/detail/:id',
+        name:'browserPathDetail',
+        component: require('@/BrowserPath/detail')
+    },
+    {
       path: '*',
       redirect: '/'
     }

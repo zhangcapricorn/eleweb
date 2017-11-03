@@ -47,7 +47,7 @@
             <el-row>
               <span class="detail-label-line is-required">选择订单所用编组账号:</span>
                 <el-select size="small" v-model="the_jd_account" placeholder="请选择"  @change="" style="width:200px">
-                  <el-option v-for="(item, idx) in jd_accounts" :key="idx" :value="item.paths" :label="item.paths">
+                  <el-option v-for="(item, idx) in account_groups" :key="idx" :value="item.group_name" :label="item.group_name">
                   </el-option>
                 </el-select>
                 <el-button size="small" type="primary" @click="saveAccountGroups">添加</el-button>
@@ -66,7 +66,7 @@
             <el-row>
               <span class="detail-label-line is-required">选择订单所用编组路径:</span>
                 <el-select size="small" v-model="the_browser_path" placeholder="请选择" style="width:200px">
-                  <el-option v-for="(item, idx) in browser_paths" :key="idx" :value="item.paths" :label="item.paths">
+                  <el-option v-for="(item, idx) in browser_paths" :key="idx" :value="item.path_name" :label="item.path_name">
                   </el-option>
                 </el-select>
                 <el-button size="small" type="primary" @click="saveBrowserPath">添加</el-button>
@@ -137,7 +137,7 @@ export default {
       each_order_num:0,
       task_jd_accounts:[],
       browser_paths:[],
-      jd_accounts:[],
+      account_groups:[],
       task_delivery_rate:0,
       delivery_from:"",
       delivery_to:"",
@@ -182,7 +182,7 @@ export default {
   },
   mounted () {
     this.getBrowserPaths();
-    this.getJDAccounts();
+    this.getAGroups();
   },
   computed: {
   },

@@ -1,12 +1,11 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { TaskLists, Todolists } from "./data/task";
-import { BrowserPaths, JDAccounts } from "./data/browserPaths";
+import { BrowserPaths } from "./data/browserPaths";
 import { Groups, AccountLevel, AccountViews, AccountOrderStatus, AccountComment, AccountCitys, AccountStatistics } from "./data/accounts";
 let _TaskLists = TaskLists;
 let _Todolists = Todolists;
 let _BrowserPaths = BrowserPaths;
-let _JDAccounts = JDAccounts;
 let _Groups = Groups;
 let _AccountLevel = AccountLevel;
 let _AccountViews = AccountViews;
@@ -42,25 +41,31 @@ export default {
 
     //获取浏览路径
     mock.onGet("/browserPaths/List").reply(config => {
+      let { page, task } = config.params;
       let mockBrowserPaths = _BrowserPaths;
+      let total = mockBrowserPaths.length;
+      mockBrowserPaths = mockBrowserPaths.filter((u, index) => index < _PageNum * page && index >= _PageNum * (page - 1));
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {
+            total: total,
             BrowserPaths: mockBrowserPaths
           }]);
         }, 1000);
       });
     });
 
-    //获取京东帐号
-    mock.onGet("/jdAccounts/List").reply(config => {
-      let mockJDAccounts = _JDAccounts;
+    //删除用户
+    mock.onGet('/browserPaths/delete').reply(config => {
+      let { id } = config.params;
+      _BrowserPaths = _BrowserPaths.filter(u => u.id !== id);
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {
-            JDAccounts: mockJDAccounts
+            code: 200,
+            msg: '删除成功'
           }]);
-        }, 1000);
+        }, 500);
       });
     });
 
@@ -217,12 +222,6 @@ export default {
       });
       let total = mockGroups.length;
       mockGroups = mockGroups.filter((u, index) => index < _PageNum * page && index >= _PageNum * (page - 1));
-      console.log(mockGroups);
-      // mockGroups = mockGroups.filter(function(u, index){
-      //   console.log(u);
-      //   console.log(index);
-      //   console.log(index < _PageNum * page && index >= _PageNum * (page - 1));
-      // });
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {

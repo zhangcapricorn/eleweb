@@ -1,18 +1,28 @@
-import { getBrowserPathsList, getJDAccountList } from '../../api/browserPathsApi'
+import { getBrowserPathsList} from '../../api/browserPathsApi'
+import { getGroupList } from '../../api/accounts'
 import { addNewTask } from '../../api/taskApi'
 
 export default {
     //获取浏览路径
     getBrowserPaths(){
-      getBrowserPathsList().then((res) => {
+      let pars = {
+            page : '1',
+            creator : ''
+        };
+      getBrowserPathsList(pars).then((res) => {
         this.browser_paths = res.data.BrowserPaths;
       });
     },
     //获取浏览路径
-    getJDAccounts(){
-      getJDAccountList().then((res) => {
-        this.jd_accounts = res.data.JDAccounts;
-      });
+    getAGroups(){
+      let pars = {
+            page : '1',
+            creator : ''
+        };
+      getGroupList(pars).then((res) => {
+            this.account_groups = res.data.Groups;
+            console.log(this.account_groups);
+        });
     },
     //保存选择的浏览路径
     saveBrowserPath(){
