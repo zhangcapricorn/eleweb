@@ -15,7 +15,7 @@ let _AccountComment = AccountComment;
 let _AccountCitys = AccountCitys;
 let _AccountStatistics = AccountStatistics;
 
-let _PageNum = 5;
+let _PageNum = 10;
 
 export default {
   bootstrap() {
@@ -217,6 +217,12 @@ export default {
       });
       let total = mockGroups.length;
       mockGroups = mockGroups.filter((u, index) => index < _PageNum * page && index >= _PageNum * (page - 1));
+      console.log(mockGroups);
+      // mockGroups = mockGroups.filter(function(u, index){
+      //   console.log(u);
+      //   console.log(index);
+      //   console.log(index < _PageNum * page && index >= _PageNum * (page - 1));
+      // });
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {

@@ -35,7 +35,7 @@
             <el-table-column label="操作查看" prop="process"></el-table-column>
           </el-table>
           <el-col :span="24" class="toolbar">
-            <el-pagination layout="prev, pager, next" size="small" :page-size="5" :total="total" @current-change="handleCurrentChange" style="float:right;">
+            <el-pagination layout="prev, pager, next" size="small" :page-size="10" :total="total" @current-change="handleCurrentChange" style="float:right;">
             </el-pagination>
           </el-col>
         </div>
