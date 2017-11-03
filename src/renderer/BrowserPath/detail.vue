@@ -27,11 +27,11 @@
               <el-row v-for="(item, idx) in pathNumber" :key="idx">
                 <el-col :span="8">
                   <spanTag :idx="idx"></spanTag>
-                  <linkTag></linkTag>
+                  <linkTag :idx="idx" @addBPath="addBrowserPath"></linkTag>
                 </el-col>
                 <el-col :span="8">
                   <span class="detail-label is-required">停留时间:</span>
-                  <secondTag></secondTag> 秒
+                  <secondTag :idx="idx" @addBPathTime="addBrowserPathTime"></secondTag> 秒
                 </el-col>
                 <el-col :span="8">
                   <delTag :idx="idx" @delPath="doDeletePath"></delTag>
@@ -68,8 +68,9 @@ export default {
   data () {
     return {
       path_name : '',
-      paths : [],
-      pathNumber : 0
+      paths : {},
+      pathNumber : 0,
+      msg : ''
     }
   },
   mounted () { 
@@ -80,10 +81,32 @@ export default {
       template : '<span class="detail-label is-required">浏览路径{{idx + 1}}:</span>',
     },
     linkTag : {
-      template : '<el-input size="middle" placeholder="请输入对应的网站链接" style="width:200px"></el-input>'
+      data() {
+        return {
+          inputValue : '',
+        }
+      },
+      props : ['idx'],
+      template : '<el-input size="middle" v-model="inputValue" @blur="onblur(idx)" placeholder="请输入对应的网站链接" style="width:200px"></el-input>',
+      methods : {
+        onblur(idx){
+          this.$emit("addBPath", this.idx, this.inputValue);
+        }
+      }
     },
     secondTag : {
-      template : '<el-input-number size="small" style="width:100px"></el-input-number>'
+      data() {
+        return {
+          inputValue : '',
+        }
+      },
+      props : ['idx'],
+      template : '<el-input size="middle" v-model="inputValue" @blur="onblur(idx)" placeholder="请输入对应的网站链接" style="width:200px"></el-input>',
+      methods : {
+        onblur(idx){
+          this.$emit("addBPathTime", this.idx, this.inputValue);
+        }
+      }
     },
     delTag : {
       props : ['idx'],

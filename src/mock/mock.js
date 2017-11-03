@@ -41,7 +41,7 @@ export default {
 
     //获取浏览路径
     mock.onGet("/browserPaths/List").reply(config => {
-      let { page, task } = config.params;
+      let { page, id, path_name, creator } = config.params;
       let mockBrowserPaths = _BrowserPaths;
       let total = mockBrowserPaths.length;
       mockBrowserPaths = mockBrowserPaths.filter((u, index) => index < _PageNum * page && index >= _PageNum * (page - 1));
@@ -64,6 +64,22 @@ export default {
           resolve([200, {
             code: 200,
             msg: '删除成功'
+          }]);
+        }, 500);
+      });
+    });
+
+    mock.onGet('/browserPaths/add').reply(config => {
+      let { path_name, paths} = config.params;
+      _BrowserPaths.push({
+        path_name : path_name,
+        paths : paths
+      });
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            message: '新增成功'
           }]);
         }, 500);
       });
