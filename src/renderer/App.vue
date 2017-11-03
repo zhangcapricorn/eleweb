@@ -109,7 +109,7 @@ function isDesktop () {
 <style lang="less">
 .content-wrapper{
   padding: 0px;
-  height: 552px;
+ 
   overflow:hidden;
 }
 </style>
