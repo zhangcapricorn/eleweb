@@ -23,18 +23,18 @@
                   <el-button style="float: left;" size="small" type="primary" @click="addNewPath">添加新路径</el-button>
                 </el-col>
               </el-row>
-
-              <el-row v-for="(item, idx) in pathNumber" :key="idx">
+               
+              <el-row v-for="(item, idx) in pathsComponent" :key="idx" >
                 <el-col :span="8">
                   <spanTag :idx="idx"></spanTag>
-                  <linkTag :idx="idx" @addBPath="addBrowserPath"></linkTag>
+                 <linkTag :idx="idx" :item="item" @addBPath="addBrowserPath"></linkTag>
                 </el-col>
                 <el-col :span="8">
                   <span class="detail-label is-required">停留时间:</span>
-                  <secondTag :idx="idx" @addBPathTime="addBrowserPathTime"></secondTag> 秒
+                  <secondTag :idx="idx" :item="item" @addBPathTime="addBrowserPathTime"></secondTag> 秒
                 </el-col>
                 <el-col :span="8">
-                  <delTag :idx="idx" @delPath="doDeletePath"></delTag>
+                  <delTag :idx="idx" :item="item" @delPath="doDeletePath"></delTag>
                 </el-col>
               </el-row>
           </div>
@@ -69,7 +69,7 @@ export default {
     return {
       path_name : '',
       paths : {},
-      pathNumber : 0,
+      pathsComponent : [],
       msg : ''
     }
   },
@@ -86,11 +86,11 @@ export default {
           inputValue : '',
         }
       },
-      props : ['idx'],
-      template : '<el-input size="middle" v-model="inputValue" @blur="onblur(idx)" placeholder="请输入对应的网站链接" style="width:200px"></el-input>',
+      props : ['idx', 'item'],
+      template : '<el-input size="middle" v-model="item.key" @blur="onblur(idx)" ref="inputValue" placeholder="请输入对应的网站链接" style="width:200px"></el-input>',
       methods : {
         onblur(idx){
-          this.$emit("addBPath", this.idx, this.inputValue);
+          this.$emit("addBPath", this.idx, this.$refs.inputValue.value);
         }
       }
     },
@@ -100,19 +100,25 @@ export default {
           inputValue : '',
         }
       },
-      props : ['idx'],
-      template : '<el-input size="middle" v-model="inputValue" @blur="onblur(idx)" placeholder="请输入对应的网站链接" style="width:200px"></el-input>',
+      props : ['idx', 'item'],
+      template : '<el-input size="middle" v-model="item.value" @blur="onblur(idx)" ref="inputValue" placeholder="请输入对应的网站链接" style="width:200px"></el-input>',
       methods : {
         onblur(idx){
-          this.$emit("addBPathTime", this.idx, this.inputValue);
+          console.log(idx);
+          let time = parseInt(this.inputValue);
+          if(!isNaN(time)){
+            this.$emit("addBPathTime", this.idx, this.$refs.inputValue.value);
+          }else{
+            alert("请输入数字");
+          }
         }
       }
     },
     delTag : {
-      props : ['idx'],
-      template : '<el-button style="float: left;" size="small" type="primary" @click="deletePath">删除</el-button>',
+      props : ['idx', 'item'],
+      template : '<el-button style="float: left;" size="small" type="primary" @click="deletePath(idx, item)">删除</el-button>',
       methods : {
-        deletePath(idx){
+        deletePath(idx, item){
           this.$emit("delPath", idx);
         },
       }
