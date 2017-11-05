@@ -67,6 +67,7 @@ export default {
   name: 'taskList',
   data () {
     return {
+      id : 0,
       path_name : '',
       paths : {},
       pathsComponent : [],
@@ -74,6 +75,7 @@ export default {
     }
   },
   mounted () { 
+    this.getDetail();
   },
   components: {
     spanTag : {
@@ -104,13 +106,7 @@ export default {
       template : '<el-input size="middle" v-model="item.value" @blur="onblur(idx)" ref="inputValue" placeholder="请输入对应的网站链接" style="width:200px"></el-input>',
       methods : {
         onblur(idx){
-          console.log(idx);
-          let time = parseInt(this.inputValue);
-          if(!isNaN(time)){
-            this.$emit("addBPathTime", this.idx, this.$refs.inputValue.value);
-          }else{
-            alert("请输入数字");
-          }
+          this.$emit("addBPathTime", this.idx, this.$refs.inputValue.value);
         }
       }
     },

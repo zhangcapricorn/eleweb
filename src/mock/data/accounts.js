@@ -17,6 +17,20 @@ for(let i = 0; i < 19; i++){
     }))
 };
 
+const Group = Mock.mock({
+    "id":Mock.Random.integer(100,500),
+    "group_name":Mock.Random.string('lower', 5),
+    "create_date":Mock.Random.date(),
+    "accouts_number":Mock.Random.integer(100,500),
+    "creator":Mock.Random.string('lower', 5),
+    'account_levels' : ['钻石', '黄金'],
+    'account_views' : ['<0', '>=1<2', '>=2<5'],
+    'account_order_status' : ['>=1<2', '>=2<3', '>=3'],
+    'account_comments' : ['>=2<5', '>=5<10', '>=10'],
+    'account_citys' : ['深圳', '四川', '昆明'],
+    'plus_rate' : Mock.mock('@float(60, 100)')
+});
+
 const AccountLevel = ['钻石', '黄金', '白银', '青铜'];
 const AccountViews = ['<0', '>=1<2', '>=2<5', '>=5<10', '>=10'];
 const AccountOrderStatus = ['<0', '>=1<2', '>=2<3', '>=3'];
@@ -58,4 +72,4 @@ const AccountStatistics = Mock.mock({
     ],
 })
 
-export {Groups, AccountLevel, AccountViews, AccountOrderStatus, AccountComment, AccountCitys, AccountStatistics}
+export {Groups, Group, AccountLevel, AccountViews, AccountOrderStatus, AccountComment, AccountCitys, AccountStatistics}

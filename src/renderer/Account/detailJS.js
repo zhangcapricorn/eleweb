@@ -1,6 +1,28 @@
-import { getGroupList, getAccountLevel, getAccountViews, getAccountOrderStatus, getAccountComment, getAccountCitys, addGroup } from '../../api/accounts'
+import { getGroupList, getAccountLevel, getAccountViews, getAccountOrderStatus, getAccountComment, getAccountCitys, addGroup, getGroupDetail } from '../../api/accounts'
 
 export default {
+    //得到帐号编组的详情
+    getDetail(){
+        let path = this.$router.currentRoute.path;
+        let groupId = path.split("/")[3];
+        if(groupId != 0){
+            let pars = {
+                id:groupId,
+            }
+            getGroupDetail(pars).then((res) => {
+                let detail = res.data.Group;
+                console.log(detail);
+                this.group_id = detail.id;
+                this.group_name = detail.group_name;
+                this.checkedALevels = detail.account_levels;
+                this.checkedAViews = detail.account_views;
+                this.checkedAOrderStatus = detail.account_order_status;
+                this.checkedAComments = detail.account_comments;
+                this.checkedACitys = detail.account_citys;
+                this.plusRate = detail.plus_rate;
+            });
+        }
+    },
     //得到帐号等级
     getALevel(){
         getAccountLevel().then((res) => {
@@ -46,5 +68,6 @@ export default {
         addGroup(pars).then((res) => {
             alert(res.data.message);
         });
+        this.$router.push('/account/list');
     }
 }

@@ -1,12 +1,15 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { TaskLists, Todolists } from "./data/task";
-import { BrowserPaths } from "./data/browserPaths";
-import { Groups, AccountLevel, AccountViews, AccountOrderStatus, AccountComment, AccountCitys, AccountStatistics } from "./data/accounts";
+import { Task, TaskLists, Todolists } from "./data/task";
+import { BrowserPaths, BrowserPath } from "./data/browserPaths";
+import { Groups, Group, AccountLevel, AccountViews, AccountOrderStatus, AccountComment, AccountCitys, AccountStatistics } from "./data/accounts";
+let _Task = Task;
 let _TaskLists = TaskLists;
 let _Todolists = Todolists;
 let _BrowserPaths = BrowserPaths;
+let _BrowserPath = BrowserPath;
 let _Groups = Groups;
+let _Group = Group;
 let _AccountLevel = AccountLevel;
 let _AccountViews = AccountViews;
 let _AccountOrderStatus = AccountOrderStatus;
@@ -20,6 +23,19 @@ export default {
   bootstrap() {
     let mock = new MockAdapter(axios);
     
+    //获取任务详情
+    mock.onGet("/tasks/detail").reply(config => {
+      let { id } = config.params;
+      let mockTask = _Task;
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            Task: mockTask
+          }]);
+        }, 1000);
+      });
+    });
+
     //获取任务列表
 	  mock.onGet("/task/List").reply(config => {
       let {page, task} = config.params;
@@ -34,6 +50,19 @@ export default {
           resolve([200, {
             total: total,
             TaskLists: mockTaskLists
+          }]);
+        }, 1000);
+      });
+    });
+
+    //获取浏览路径详情
+    mock.onGet("/browserPaths/detail/").reply(config => {
+      let { id} = config.params;
+      let mockBrowserPath = _BrowserPath;
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            BrowserPath: mockBrowserPath
           }]);
         }, 1000);
       });
@@ -143,6 +172,19 @@ export default {
             message: '新增成功'
           }]);
         }, 500);
+      });
+    });
+
+    //获取group详情
+    mock.onGet("/account/detail/").reply(config => {
+      let { id} = config.params;
+      let mockGroup = _Group;
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            Group: mockGroup
+          }]);
+        }, 1000);
       });
     });
 

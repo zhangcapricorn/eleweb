@@ -113,6 +113,7 @@ export default {
    
   },
   mounted () {
+    this.getDetail();
     this.getALevel();
     this.getAView();
     this.getAOrderStatus();

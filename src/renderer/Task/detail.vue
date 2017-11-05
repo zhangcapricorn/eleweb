@@ -131,6 +131,7 @@ export default {
   name: 'index',
   data () {
     return {
+      id : 0,
       task_name:"",
       task_order_num:0,
       task_buy_num:0,
@@ -181,6 +182,7 @@ export default {
     } 
   },
   mounted () {
+    this.getDetail();
     this.getBrowserPaths();
     this.getAGroups();
   },

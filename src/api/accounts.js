@@ -17,3 +17,5 @@ export const addGroup = params => { return axios.get(`${BaseURL}/group/add`, { p
 export const deleteGroup = params => { return axios.get(`${BaseURL}/group/delete`, { params: params }); };
 
 export const getAccountStatistics = params => { return axios.get(`${BaseURL}/group/statistics`, { params: params }); };
+
+export const getGroupDetail = params => { return axios.get(`${BaseURL}/account/detail/`, { params: params }); };
